@@ -1,0 +1,41 @@
+html {
+  padding: 0;
+  margin: 0;
+  background-image: url(../image/Fond.jpg);
+}
+.formu {
+  padding: 0;
+  margin: 0;
+}
+div {
+  display: flex;
+  justify-content: center;
+}
+#reservation,
+#options,
+#coordonnees {
+  border-radius: 20px;
+  background-color: burlywood;
+  padding: 5% 5%;
+}
+#inscription {
+  margin-top: 3%;
+  width: 75%;
+}
+.coordonnees label {
+  width: 30%;
+}
+.boutons {
+  display: flex;
+  margin-top: 5%;
+}
+button {
+  justify-content: center;
+}
+.bouton {
+  justify-content: center;
+}
+
+.hidden {
+  display: none;
+}
