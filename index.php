@@ -133,6 +133,16 @@ include "./header.php";
         <input type="text" name="adressePostale" id="adressePostale" required>
         <br>
       </div>
+      <div class="coordonnees">
+        <label for="mdp">Mot de passe :</label>
+        <input type="password" name="mdp" id="mdp" required>
+        <br>
+      </div>
+      <div class="coordonnees">
+        <label for="mdp2">Confirmer le mot de passe :</label>
+        <input type="password" name="mdp2" id="mdp2" required>
+        <br>
+      </div>
       <div class="boutons">
         <input type="submit" name="soumission" class="bouton" value="Réserver">
       </div>

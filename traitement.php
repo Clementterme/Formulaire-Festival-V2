@@ -1,4 +1,9 @@
 <?php
+
+include "./config.php";
+
+$bdd = new PDO("mysql:host=" . DATABASE_HOST . ";dbname=" . DATABASE_NAME . ";charset=utf8;", DATABASE_USERNAME, DATABASE_PASSWORD);
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nom = htmlspecialchars($_POST["nom"]);
     $prenom = htmlspecialchars($_POST["prenom"]);
@@ -7,6 +12,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     $telephone = htmlspecialchars($_POST["telephone"]);
     $adressePostale = htmlspecialchars($_POST["adressePostale"]);
+    if($_POST["mdp"] == $_POST["mdp2"]) {
+        $mdp = htmlspecialchars($_POST["mdp"]);
+    }
+
+
+
     $nombrePlaces = $_POST["nombrePlaces"];
 
     $tarifReduit = isset($_POST["tarifReduit"]) ? "Oui" : "x"; // Si la case est cochée, renvoie "Oui", sinon "Non"
