@@ -18,7 +18,7 @@
       </a>
     </div>
     <div class="connexion">
-      <a href="login-admin.php">Connexion Admin</a>
+      <a href="login-admin.php">Connexion</a>
     </div>
   </div>
 

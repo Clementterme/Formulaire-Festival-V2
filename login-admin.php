@@ -26,8 +26,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="./assets/login.css" />
 </head>
 <main>
-    <h1>Connexion Admin</h1>
+    <h1>Connexion</h1>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        <label for="email">Email :</label>
+        <input type="email" name="email" id="email" required>
         <label for="password">Mot de passe :</label>
         <input type="password" id="password" name="password" required>
         <button type="submit">Connexion</button>

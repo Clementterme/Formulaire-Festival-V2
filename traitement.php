@@ -11,10 +11,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email = htmlspecialchars($_POST["email"]);
     }
     $telephone = htmlspecialchars($_POST["telephone"]);
-    $adressePostale = htmlspecialchars($_POST["adressePostale"]);
-    if($_POST["mdp"] == $_POST["mdp2"]) {
+    $adresse = htmlspecialchars($_POST["adressePostale"]);
+    if ($_POST["mdp"] == $_POST["mdp2"]) {
         $mdp = htmlspecialchars($_POST["mdp"]);
     }
+    $rgpd = date('Y-m-d H:i:sP');
+
+    // Enregistrer l'utilisateur dans la bdd
+    $insertUser = $bdd->prepare("INSERT INTO user(nom, prenom, email, mdp, telephone, adresse, rgpd) VALUES(?, ?, ?, ?, ?, ?, ?)");
+    $insertUser->execute(array($nom, $prenom, $email, $mdp, $telephone, $adresse, $rgpd));
 
 
 
