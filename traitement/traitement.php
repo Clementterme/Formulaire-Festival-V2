@@ -1,4 +1,7 @@
 <?php
+
+include_once "../src/Repository/PassRepository.php";
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nom = htmlspecialchars($_POST["nom"]);
     $prenom = htmlspecialchars($_POST["prenom"]);
@@ -9,6 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $adressePostale = htmlspecialchars($_POST["adressePostale"]);
     $nombrePlaces = $_POST["nombrePlaces"];
 
+   
     $tarifReduit = isset($_POST["tarifReduit"]) ? "Oui" : "x"; // Si la case est cochée, renvoie "Oui", sinon "Non"
 
     if (isset($_POST['nbJourReduit'])) {
@@ -32,7 +36,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $prixChoixNombreJourReduit = 0;
     }
 
-
+$newPass = $this->
+   
 
     if (isset($_POST['nbJour'])) {
         $nombreJour = $_POST['nbJour'];
