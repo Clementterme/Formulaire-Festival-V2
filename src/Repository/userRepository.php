@@ -1,26 +1,31 @@
 <?php
+namespace src\Repository;
+
+use src\Models\User;
+use src\Models\Database;
+use PDO;
 class UserRepository extends Database 
 {
     public function getAll()
     {
         $data = $this->getDB()->query('SELECT * FROM user');
 
-        $user = [];
+        $users = [];
 
         foreach ($data as $user) {
             $newUser = new User(
-                $user['Id'],
-                $user['Nom'],
-                $user['Prénom'],
-                $user['Email'],
-                $user['MotDePasse'],
-                $user['Telephone'],
-                $user['AdressePostale'],
+                $user['id'],
+                $user['nom'],
+                $user['prenom'],
+                $user['email'],
+                $user['mdp'],
+                $user['telephone'],
+                $user['adressePostale'],
 
 
             );
 
-            $user[] = $newUser;
+            $users[] = $newUser;
         }
 
         return $user;
@@ -28,17 +33,17 @@ class UserRepository extends Database
 
     public function create($newUser)
     {
-        $request = 'INSERT INTO todo_user (Nom,	Prenom,		Email, MotDePasse, Telephone, AdressePostale) VALUES ( :Nom, :Prenom, :Email, :MotDePasse, :Telephone, :AdressePostale)';
+        $request = 'INSERT INTO user (nom,	prenom,		email, mdp, telephone, adressePostale) VALUES ( :nom, :prenom, :email, :mdp, :telephone, :adressePostale)';
         $query = $this->getDB()->prepare($request);
         
 
         $query->execute([
-           'Nom'=> $newUser->getNom(),
-            'Prenom'=> $newUser->getPrenom(),
-            'Email' =>$newUser->getEmail(),
-            'MotDePasse' =>$newUser->getMotDePasse(),
-            'Telephone' => $newUser->getTelephone(),
-            'AdressePostale' => $newUser->getAdressePostale(),
+           'nom'=> $newUser->getNom(),
+            'prenom'=> $newUser->getPrenom(),
+            'email' =>$newUser->getEmail(),
+            'mdp' =>$newUser->getMotDePasse(),
+            'telephone' => $newUser->getTelephone(),
+            'adressePostale' => $newUser->getAdressePostale(),
             // 'Id' => $newUser->getId(),
         ]);
     }
@@ -46,7 +51,7 @@ class UserRepository extends Database
 
     public function update($user)
 {
-    $request = "UPDATE user SET Nom = ?, Prénom = ?, Email= ?, MotDePasse = ?, Telephone = ?, AdressePostale = ? WHERE id = ?";
+    $request = "UPDATE user SET nom = ?, prenom = ?, email= ?, mdp = ?, telephone = ?, adressePostale = ? WHERE id = ?";
     
     $query = $this->getDB()->prepare($request);
 

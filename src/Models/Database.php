@@ -39,7 +39,7 @@ final class Database
   {
 
     // Vérifier si la base de données est vide
-    if ($this->testIfTableFilmsExists()) {
+    if ($this->testIfTableUsersExists()) {
       return "La base de données semble déjà remplie.";
       die();
     } else {
@@ -73,7 +73,7 @@ final class Database
    * Vérifie si la table Films existe déjà dans la BDD
    * @return bool
    */
-  private function testIfTableFilmsExists(): bool
+  private function testIfTableUsersExists(): bool
   {
     $existant = $this->DB->query('SHOW TABLES FROM ' . DATABASE_NAME . ' like \'%user%\'')->fetch();
 
