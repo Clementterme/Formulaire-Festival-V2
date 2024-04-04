@@ -39,6 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $nombrePlaces = $_POST["nombrePlaces"];
 
+   
     $tarifReduit = isset($_POST["tarifReduit"]) ? "Oui" : "x"; // Si la case est cochée, renvoie "Oui", sinon "Non"
 
     if (isset($_POST['nbJourReduit'])) {
@@ -62,7 +63,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $prixChoixNombreJourReduit = 0;
     }
 
-
+// $newPass = $this->
+   
 
     if (isset($_POST['nbJour'])) {
         $nombreJour = $_POST['nbJour'];
