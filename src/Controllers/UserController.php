@@ -7,14 +7,16 @@ use src\Repository\UserRepository;
 
 class UserController 
 {
+   public $UserRepository;
+   
     public function __construct()
     {
-        $this->userRepository = new UserRepository();
+        $this->UserRepository = new UserRepository();
     }
 
     public function index()
     {
-        $users = $this->userRepository->getAll();
+        $User = $this->UserRepository->getAll();
 
 
     }
@@ -33,7 +35,7 @@ class UserController
 
         );
 
-        $this->userRepository->create($newUser);
+        $this->UserRepository->create($newUser);
 
 
     }

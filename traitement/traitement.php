@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $prixChoixNombreJourReduit = 0;
     }
 
-$newPass = $this->
+// $newPass = $this->
    
 
     if (isset($_POST['nbJour'])) {

@@ -28,12 +28,12 @@ class UserRepository extends Database
             $users[] = $newUser;
         }
 
-        return $user;
+        return $users;
     }
 
     public function create($newUser)
     {
-        $request = 'INSERT INTO user (nom,	prenom,		email, mdp, telephone, adressePostale) VALUES ( :nom, :prenom, :email, :mdp, :telephone, :adressePostale)';
+        $request = 'INSERT INTO user (nom,	prenom,	email, mdp, telephone, adressePostale) VALUES ( :nom, :prenom, :email, :mdp, :telephone, :adressePostale)';
         $query = $this->getDB()->prepare($request);
         
 
@@ -49,7 +49,7 @@ class UserRepository extends Database
     }
 
 
-    public function update($user)
+    public function update($User)
 {
     $request = "UPDATE user SET nom = ?, prenom = ?, email= ?, mdp = ?, telephone = ?, adressePostale = ? WHERE id = ?";
     
@@ -57,13 +57,24 @@ class UserRepository extends Database
 
 
     $query->execute([
-        $user->getId(),
-        $user->getNom(),
-        $user->getPrenom(),
-        $user->getEmail(),
-        $user->getMotDePasse(),
-        $user->getTelephone(),
-        $user->getAdressePostale(),
+        $User->getId(),
+        $User->getNom(),
+        $User->getPrenom(),
+        $User->getEmail(),
+        $User->getMotDePasse(),
+        $User->getTelephone(),
+        $User->getAdressePostale(),
     ]);
     
-} }
+
+    } 
+
+    public function delete($User)
+{
+    $request = "DELETE FROM user WHERE id = ?";
+    
+    $query = $this->getDB()->prepare($request);
+
+    $query->execute([$User]);
+}
+}

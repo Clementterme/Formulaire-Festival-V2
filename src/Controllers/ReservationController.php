@@ -28,8 +28,8 @@ class ReservationController
 
     public function index()
     {
-        $users = $this->UserRepo->getAllUsers();
-        $this->render("Dashboard", ['section' => 'users', 'users' =>$users]);
+        $users = $this->UserRepo->getAll();
+        $this->render("index", ['section' => 'users', 'users' =>$users]);
 
     }
 
