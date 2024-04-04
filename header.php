@@ -18,7 +18,11 @@
       </a>
     </div>
     <div class="connexion">
-      <a href="login-admin.php">Connexion Admin</a>
+    <?php if (isset($_SESSION['loggedin'])) { ?>
+      <a href="logout.php">Déconnexion</a>
+      <?php } else { ?>
+      <a href="login-admin.php">Connexion</a>
+      <?php }; ?>
     </div>
   </div>
 

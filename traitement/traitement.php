@@ -1,6 +1,10 @@
 <?php
 
-include_once "../src/Repository/PassRepository.php";
+session_start();
+
+include "./config.php";
+
+$bdd = new PDO("mysql:host=" . DATABASE_HOST . ";dbname=" . DATABASE_NAME . ";charset=utf8;", DATABASE_USERNAME, DATABASE_PASSWORD);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nom = htmlspecialchars($_POST["nom"]);
@@ -9,7 +13,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email = htmlspecialchars($_POST["email"]);
     }
     $telephone = htmlspecialchars($_POST["telephone"]);
-    $adressePostale = htmlspecialchars($_POST["adressePostale"]);
+    $adresse = htmlspecialchars($_POST["adressePostale"]);
+    if ($_POST["mdp"] == $_POST["mdp2"]) {
+        $mdp = htmlspecialchars($_POST["mdp"]);
+    }
+    $rgpd = date('Y-m-d H:i:sP');
+
+    // Enregistrer l'utilisateur dans la bdd
+    $insertUser = $bdd->prepare("INSERT INTO user(nom, prenom, email, mdp, telephone, adresse, rgpd) VALUES(?, ?, ?, ?, ?, ?, ?)");
+    $insertUser->execute(array($nom, $prenom, $email, $mdp, $telephone, $adresse, $rgpd));
+
+    // Connexion utilisateur
+    $selectUser = $bdd->prepare("SELECT * FROM user WHERE nom = ? AND prenom = ? AND mdp = ? AND email = ?");
+            $selectUser->execute(array($nom, $prenom, $mdp, $email));
+            if ($selectUser->rowCount() > 0) {
+                $_SESSION["nom"] = $nom;
+                $_SESSION["prenom"] = $prenom;
+                $_SESSION["mdp"] = $mdp;
+                $_SESSION["email"] = $email;
+
+                $_SESSION["id"] = $selectUser->fetch()["id"];
+
+                $_SESSION['loggedin'] = TRUE;
+            }
+
     $nombrePlaces = $_POST["nombrePlaces"];
 
    

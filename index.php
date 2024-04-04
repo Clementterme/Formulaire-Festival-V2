@@ -1,4 +1,7 @@
 <?php
+
+session_start();
+
 include "./header.php";
 ?>
 
@@ -103,7 +106,11 @@ include "./header.php";
 
       <br>
       <div class="boutons">
+        <?php if (isset($_SESSION['loggedin'])) { ?>
+        <input type="submit" name="soumission" class="bouton" value="Réserver">
+        <?php } else { ?>
         <button class="bouton" onclick="suivant2()">Suivant</button>
+        <?php } ?>
       </div>
     </fieldset>
     <fieldset id="coordonnees">
@@ -131,6 +138,16 @@ include "./header.php";
       <div class="coordonnees">
         <label for="adressePostale">Adresse Postale :</label>
         <input type="text" name="adressePostale" id="adressePostale" required>
+        <br>
+      </div>
+      <div class="coordonnees">
+        <label for="mdp">Mot de passe :</label>
+        <input type="password" name="mdp" id="mdp" required>
+        <br>
+      </div>
+      <div class="coordonnees">
+        <label for="mdp2">Confirmer le mot de passe :</label>
+        <input type="password" name="mdp2" id="mdp2" required>
         <br>
       </div>
       <div class="boutons">
