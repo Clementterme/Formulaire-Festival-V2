@@ -1,4 +1,7 @@
 <?php
+
+session_start();
+
 include "./header.php";
 ?>
 
@@ -103,7 +106,11 @@ include "./header.php";
 
       <br>
       <div class="boutons">
+        <?php if (isset($_SESSION['loggedin'])) { ?>
+        <input type="submit" name="soumission" class="bouton" value="Réserver">
+        <?php } else { ?>
         <button class="bouton" onclick="suivant2()">Suivant</button>
+        <?php } ?>
       </div>
     </fieldset>
     <fieldset id="coordonnees">

@@ -1,18 +1,40 @@
 <?php
+
 include "./header.php";
+include "./config.php";
 
 session_start();
 
+$bdd = new PDO("mysql:host=" . DATABASE_HOST . ";dbname=" . DATABASE_NAME . ";chars et=utf8;", DATABASE_USERNAME, DATABASE_PASSWORD);
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $password = $_POST["password"];
+    $mdp = $_POST["password"];
 
     // Vérification mot de passe
-    if ($password === "0000") {
-        $_SESSION["loggedin"] = true;
-        header("location: admin.php");
-        exit;
-    } else {
-        $login_err = "Mot de passe incorrect";
+    if (empty($_POST["email"]) && !empty($_POST["password"])) {
+        if ($mdp === "0000") {
+            $_SESSION["loggedin"] = true;
+            header("location: admin.php");
+            exit;
+        }
+    } else if (!empty($_POST["email"]) && !empty($_POST["password"])) {
+        $email = htmlspecialchars($_POST['email']);
+        $mdp = htmlspecialchars($_POST['password']);
+
+        $selectUser = $bdd->prepare("SELECT * FROM user WHERE email = ? AND mdp = ?");
+        $selectUser->execute(array($email, $mdp));
+
+        if ($selectUser->rowCount() > 0) {
+            $_SESSION["email"] = $email;
+            $_SESSION["mdp"] = $mdp;
+            $_SESSION["prenom"] = $selectUser->fetch()["prenom"];
+
+            $_SESSION['loggedin'] = TRUE;
+
+            header("location: index.php");
+        } else {
+            echo "Email ou mot de passe incorrect";
+        }
     }
 }
 ?>
@@ -27,9 +49,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <main>
     <h1>Connexion</h1>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
         <label for="email">Email :</label>
-        <input type="email" name="email" id="email" required>
+        <input type="email" name="email" id="email">
         <label for="password">Mot de passe :</label>
         <input type="password" id="password" name="password" required>
         <button type="submit">Connexion</button>

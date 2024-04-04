@@ -1,5 +1,9 @@
 <?php
+
+session_start();
+
 include "./header.php";
+
 ?>
 
 <link rel="stylesheet" href="./assets/reservation.css" />

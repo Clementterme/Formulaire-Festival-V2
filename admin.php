@@ -2,6 +2,8 @@
 
 session_start();
 
+include "./header.php";
+
 // Vérification si admin connecté
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: login-admin.php");
