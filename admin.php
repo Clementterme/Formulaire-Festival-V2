@@ -6,12 +6,12 @@ include "./header.php";
 
 // Vérification si admin connecté
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
-    header("location: login-admin.php");
+    header("location: login.php");
     exit;
 }
 
 // Affichage liste réservations depuis fichier CSV
-$reservations = array_map('str_getcsv', file('reservations.csv'));
+$reservations = array_map('str_getcsv', file('./traitement/reservations.csv'));
 
 // Affichage réservations dans tableau
 ?>

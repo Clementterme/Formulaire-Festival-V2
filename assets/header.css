@@ -5,6 +5,10 @@ header {
   margin: 0px;
   width: 100%;
 }
+.logo {
+  display: flex;
+  align-items: center;
+}
 img {
   width: 50%;
   width: 200px;
@@ -18,7 +22,20 @@ img {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   padding-right: 3%;
 }
+.bonjour {
+  display: flex;
+  align-items: center;
+}
+.bonjourUtilisateur {
+  font-size: 16px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  padding-left: 25px;
+}
 a {
   text-decoration: none;
   color: midnightblue;
+}
+
+.boutonReservations {
+  padding-right: 25px;
 }

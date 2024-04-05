@@ -12,16 +12,20 @@
 <header>
 
   <div id="header">
-    <div class="logo">
-      <a href="index.php">
+    <div>
+      <a class="logo" href="index.php">
         <img src="./image/vercors_festival_music.png" alt="logo">
       </a>
+      <?php if (isset($_SESSION['loggedin'])) {
+        echo '<div class="bonjour"><a class="bonjourUtilisateur">Bonjour '.$_SESSION["prenom"].' !</a></div>';
+     }?>
     </div>
     <div class="connexion">
     <?php if (isset($_SESSION['loggedin'])) { ?>
-      <a href="logout.php">Déconnexion</a>
+      <a href="./reservation.php" class="boutonReservations">Mes réservations</a>
+      <a href="./logout.php">Déconnexion</a>
       <?php } else { ?>
-      <a href="login-admin.php">Connexion</a>
+      <a href="./login.php">Connexion</a>
       <?php }; ?>
     </div>
   </div>
