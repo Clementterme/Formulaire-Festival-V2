@@ -2,7 +2,7 @@
 
 session_start();
 
-include "./config.php";
+include "../config.php";
 
 $bdd = new PDO("mysql:host=" . DATABASE_HOST . ";dbname=" . DATABASE_NAME . ";charset=utf8;", DATABASE_USERNAME, DATABASE_PASSWORD);
 
@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $nombrePlaces = $_POST["nombrePlaces"];
 
-    $tarifReduit = isset($_POST["tarifReduit"]) ? "Oui" : "x"; // Si la case est cochée, renvoie "Oui", sinon "Non"
+    $tarifReduit = isset($_POST["tarifReduit"]) ? "Oui" : "x"; // Si la case est cochée, renvoie "Oui", sinon "x"
 
     if (isset($_POST['nbJourReduit'])) {
         $nombreJourReduit = $_POST['nbJourReduit'];
@@ -207,4 +207,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 $prixTotal = (($prixChoixNombreJourReduit + $prixChoixNombreJour) * $nombrePlaces) + $prixTenteNuit1 + $prixTenteNuit2 + $prixTenteNuit3 + $prixTente3Nuits + $prixVanNuit1 + $prixVanNuit2 + $prixVanNuit3 + $prixVan3Nuits + ($nombreCasquesEnfants * 2) + ($nombreLugesEte * 5);
 
-header("location:reservation.php?prixTotal=$prixTotal&nom=$nom&prenom=$prenom&email=$email&nombrePlaces=$nombrePlaces&tarifReduit=$tarifReduit&choixNombreJourReduit=$choixNombreJourReduit&choixNombreJour=$choixNombreJour&choixPass1jour=$choixPass1jour&choixPass2Jours=$choixPass2Jours&tenteNuit1=$tenteNuit1&tenteNuit2=$tenteNuit2&tenteNuit3=$tenteNuit3&tente3Nuits=$tente3Nuits&vanNuit1=$vanNuit1&vanNuit2=$vanNuit2&vanNuit3=$vanNuit3&van3Nuits=$van3Nuits&enfant=$enfant&nombreCasquesEnfants=$nombreCasquesEnfants&nombreLugesEte=$nombreLugesEte");
+header("location: ../reservation.php?prixTotal=$prixTotal&nom=$nom&prenom=$prenom&email=$email&nombrePlaces=$nombrePlaces&tarifReduit=$tarifReduit&choixNombreJourReduit=$choixNombreJourReduit&choixNombreJour=$choixNombreJour&choixPass1jour=$choixPass1jour&choixPass2Jours=$choixPass2Jours&tenteNuit1=$tenteNuit1&tenteNuit2=$tenteNuit2&tenteNuit3=$tenteNuit3&tente3Nuits=$tente3Nuits&vanNuit1=$vanNuit1&vanNuit2=$vanNuit2&vanNuit3=$vanNuit3&van3Nuits=$van3Nuits&enfant=$enfant&nombreCasquesEnfants=$nombreCasquesEnfants&nombreLugesEte=$nombreLugesEte");

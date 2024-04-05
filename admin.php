@@ -15,13 +15,7 @@ $reservations = array_map('str_getcsv', file('reservations.csv'));
 
 // Affichage réservations dans tableau
 ?>
-<!DOCTYPE html>
-<html lang="fr">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Liste des réservations</title>
     <link rel="stylesheet" href="./assets/admin.css">
 </head>
 <main>
